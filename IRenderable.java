@@ -1,6 +1,6 @@
 public interface IRenderable {
 
-    void Render();
+    void Render(Renderer r);
 
 
 }

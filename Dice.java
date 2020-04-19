@@ -9,15 +9,12 @@ public class Dice extends GameObject{
         this.numSides = numSides;
         numDisplaying = 1;
         canRoll = roll;
-        image = "Dice displaying number: ";
-        strategy = new Draw();
+       // strategy = new Draw();
     }
 
     @Override
-    public void Render() {
-        //strategy.execute(image + numDisplaying, xPos, yPos);
-        render.execute(image + numDisplaying, xPos, yPos);
-        //strategy = new Draw();
+    public void Render(Renderer r) {
+        r.Draw(sprite, xPos, yPos);
     }
 
     @Override
@@ -33,18 +30,18 @@ public class Dice extends GameObject{
 
 
     @Override
-    public void update(String e, int x, int y) {
+    public void Update(String e, int x, int y) {
         if(e.equals("click")){
             ///Roll
             roll();
-            strategy.execute(image,xPos,yPos);
+            //strategy.execute(image,xPos,yPos);
         }
     }
 
     public void roll(){
         if(canRoll){
             System.out.println("You can roll this dice!");
-            strategy = new Roll();
+            //strategy = new Roll();
             Random rand = new Random();
             numDisplaying = rand.nextInt(numSides)+1;
         }else{

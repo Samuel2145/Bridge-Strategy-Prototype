@@ -1,14 +1,11 @@
 public abstract class GameObject implements IRenderable{
 
-    GameObjectStrategy strategy;
-    GameObjectStrategy render = new Draw();
     int xPos, yPos;
     int GUID; //global identifier for object
-    String image;
-    boolean renderable, moveable;
-    public abstract void Render();
+    Sprite sprite;
+    boolean belongsToPlayer;
     public abstract GameObject clone();
-    public abstract void update(String e, int x, int y);
+    public abstract void Update(String e, int x, int y);
     GameObject Save(){
         return clone();
     }

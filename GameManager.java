@@ -4,11 +4,27 @@ import java.util.Stack;
 
 public class GameManager {
 
+    //single instance of itself
+    private static GameManager gameManager;
+
     HashMap<Integer, GameObject> gameObjects = new HashMap<>();
 
 
     //caretaker for memento stuff here
     Stack<GameObject> objectHistories = new Stack<>();
+
+    Renderer renderer = new Renderer();
+
+
+
+    private GameManager(){}
+
+    public static GameManager getInstance() {
+        if (gameManager == null) {
+            gameManager = new GameManager();
+        }
+        return gameManager;
+    }
 
     public void Undo(){
         GameObject objectToChangeTo = objectHistories.pop();
@@ -27,7 +43,7 @@ public class GameManager {
         GameObject foundObject = SearchForBounds(leftClickPosX, leftClickPosY);
         if(foundObject != null) {
             objectHistories.push(foundObject.Save());
-            foundObject.update("Left Click", leftClickPosX, leftClickPosY);
+            foundObject.Update("Left Click", leftClickPosX, leftClickPosY);
             foundObject.xPos = leftClickPosX;
             foundObject.yPos = leftClickPosY;
         }
@@ -55,14 +71,10 @@ public class GameManager {
         gameObjects.put(objectToAdd.GUID, objectToAdd);
     }
 
-
     public void RenderObjects(){
         for(GameObject gameObject : gameObjects.values()){
-            gameObject.Render();
+            gameObject.Render(renderer);
         }
     }
-
-
-
 
 }

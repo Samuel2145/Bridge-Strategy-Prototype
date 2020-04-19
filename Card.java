@@ -1,20 +1,16 @@
 public class Card extends GameObject{
 
     int cardValue;
-    String side;
-    boolean canFlip;
-    public Card(int cardVal, boolean flip){
+    Sprite side1, side2;
+    boolean currentSide;
+    public Card(int cardVal){
         cardValue = cardVal;
-        side = "Back Side";
-        canFlip = flip;
-        image = "Card with value of: ";
-        strategy = new Draw();
+        side2 = new Sprite();
     }
 
     @Override
-    public void Render() {
-        strategy.execute(image + cardValue + " Displaying: " + side,xPos,yPos);
-        strategy = new Draw();
+    public void Render(Renderer r) {
+        r.Draw((currentSide ? side1 : side2), xPos, yPos);
     }
 
     @Override
@@ -23,19 +19,16 @@ public class Card extends GameObject{
     }
 
     @Override
-    public void update(String e, int x, int y) {
+    public void Update(String e, int x, int y) {
+
+        if(e.equals("F")){
+            flip();
+        }
 
     }
 
     public void flip(){
-        if(canFlip){
-            System.out.println("You can flip this card!");
-            strategy = new Flip();
-            side = "Front Side";
-        }else{
-            System.out.println("You can't flip this card!");
-        }
+        currentSide = !currentSide;
     }
-
 
 }

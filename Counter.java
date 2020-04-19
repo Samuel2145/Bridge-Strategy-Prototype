@@ -7,18 +7,15 @@ public class Counter extends GameObject {
         currentValue = val;
     }
 
-    @Override
-    public void Render() {
-        render.execute("Image of Counter", xPos, yPos);
-    }
 
     @Override
     public GameObject clone() {
         return new Counter(currentValue);
     }
 
+
     @Override
-    public void update(String e, int x, int y) {
+    public void Update(String e, int x, int y) {
 
         if(e.equals("Right Click")){
             currentValue--;
@@ -44,4 +41,8 @@ public class Counter extends GameObject {
     }
 
 
+    @Override
+    public void Render(Renderer r) {
+        r.Draw(new Sprite(), xPos, yPos);
+    }
 }
