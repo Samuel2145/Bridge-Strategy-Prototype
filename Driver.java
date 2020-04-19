@@ -50,7 +50,7 @@ public class Driver {
 
         //Memento stuff
 
-        GameManager gameManager = new GameManager();
+        GameManager gameManager = GameManager.GetInstance();
         Dice movingDice = new Dice(6, true);
         movingDice.xPos = 360;
         movingDice.yPos = 390;
