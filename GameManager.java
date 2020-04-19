@@ -87,6 +87,8 @@ public class GameManager {
         if(!gameObjects.containsValue(gameObject)){
             throw new Exception("game object doesn't exist in list of game objects");
         }
+        gameObject.belongsToPlayer = true;
+        gameObjects.replace(gameObject.GUID, gameObject);
         p.putGameObjectInHand(gameObject.GUID);
     }
 
@@ -95,6 +97,9 @@ public class GameManager {
         if(!gameObjects.containsKey(GUID)){
             throw new Exception("game object doesn't exist in list of game objects");
         }
+        GameObject obj = gameObjects.get(GUID);
+        obj.belongsToPlayer = true;
+        gameObjects.replace(GUID, obj);
         p.putGameObjectInHand(gameObjects.get(GUID).GUID);
     }
 
@@ -102,6 +107,8 @@ public class GameManager {
         if(!gameObjects.containsValue(gameObject)){
             throw new Exception("game object doesn't exist in list of game objects");
         }
+        gameObject.belongsToPlayer = false;
+        gameObjects.replace(gameObject.GUID, gameObject);
         p.removeIDFromHand(gameObject.GUID);
     }
 
@@ -111,6 +118,9 @@ public class GameManager {
             throw new Exception("game object doesn't exist in list of game objects");
         }
         p.removeIDFromHand(gameObjects.get(GUID).GUID);
+        GameObject obj = gameObjects.get(GUID);
+        obj.belongsToPlayer = false;
+        gameObjects.replace(GUID, obj);
     }
 
 
