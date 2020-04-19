@@ -15,13 +15,24 @@ public class Dice extends GameObject{
 
     @Override
     public void render() {
-        strategy.execute(image + numDisplaying, xPos, yPos);
-        strategy = new Draw();
+        //strategy.execute(image + numDisplaying, xPos, yPos);
+        render.execute(image + numDisplaying, xPos, yPos);
+        //strategy = new Draw();
     }
 
     @Override
     public Dice clone() {
         return this;
+    }
+
+
+    @Override
+    public void update(String e, int x, int y) {
+        if(e.equals("click")){
+            ///Roll
+            roll();
+            strategy.execute(image,xPos,yPos);
+        }
     }
 
     public void roll(){
