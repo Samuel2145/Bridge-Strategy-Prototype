@@ -7,9 +7,8 @@ public class Counter extends GameObject {
         currentValue = val;
     }
 
-
     @Override
-    public void render() {
+    public void Render() {
         render.execute("Image of Counter", xPos, yPos);
     }
 

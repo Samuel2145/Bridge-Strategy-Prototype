@@ -14,7 +14,7 @@ public class Dice extends GameObject{
     }
 
     @Override
-    public void render() {
+    public void Render() {
         //strategy.execute(image + numDisplaying, xPos, yPos);
         render.execute(image + numDisplaying, xPos, yPos);
         //strategy = new Draw();
@@ -22,7 +22,13 @@ public class Dice extends GameObject{
 
     @Override
     public Dice clone() {
-        return this;
+
+        //gotta do deep copy here
+        Dice newDice = new Dice(numSides, canRoll);
+        newDice.numDisplaying = numDisplaying;
+        newDice.yPos = yPos;
+        newDice.xPos = xPos;
+        return newDice;
     }
 
 
@@ -47,5 +53,12 @@ public class Dice extends GameObject{
 
     }
 
-
+    @Override
+    public void Restore(GameObject memento) {
+        super.Restore(memento);
+        Dice diceMemento = (Dice)memento;
+        numSides = diceMemento.numSides;
+        numDisplaying = diceMemento.numDisplaying;
+        canRoll = diceMemento.canRoll;
+    }
 }

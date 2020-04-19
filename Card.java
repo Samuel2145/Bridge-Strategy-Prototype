@@ -12,7 +12,7 @@ public class Card extends GameObject{
     }
 
     @Override
-    public void render() {
+    public void Render() {
         strategy.execute(image + cardValue + " Displaying: " + side,xPos,yPos);
         strategy = new Draw();
     }
@@ -20,6 +20,11 @@ public class Card extends GameObject{
     @Override
     public Card clone() {
         return this;
+    }
+
+    @Override
+    public void update(String e, int x, int y) {
+
     }
 
     public void flip(){
