@@ -11,9 +11,10 @@ public class GameManager {
     Stack<GameObject> objectHistories = new Stack<>();
 
     public void Undo(){
-        GameObject objectToChange = objectHistories.pop();
+        GameObject objectToChangeTo = objectHistories.pop();
         //objectToChange.GUID gets the Key for the object that has new data that we're replacing with old data
-        gameObjects.replace(objectToChange.GUID, objectToChange);
+        GameObject objectToChangeFrom = gameObjects.get(objectToChangeTo.GUID);
+        objectToChangeFrom.Restore(objectToChangeTo);
     }
 
 
