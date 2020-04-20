@@ -1,9 +1,13 @@
+import java.util.ArrayList;
 import java.util.Random;
 public class Dice extends GameObject{
+
 
     int numSides;
     int numDisplaying;
     boolean canRoll;
+
+    ArrayList<Sprite> spritesForSides = new ArrayList<>();
 
     public Dice(int numSides, boolean roll){
         this.numSides = numSides;
